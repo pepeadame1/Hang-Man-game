@@ -221,6 +221,7 @@ int DisplayGame(string iWord)
         cout << "please enter a letter that you have not used" << endl;
     }
     }
+    cout << endl;
 cout << "the word was: " << iWord << endl;
 
 
@@ -245,7 +246,10 @@ int main()
     string sContinue;
     string iFile;
     string iWordAns;
-    do
+    int iWin = 0;
+    int iLoose = 0;
+    double dTimes = 0;
+    double dWinratio;
     {
     cout << "give the name of the file to use like a dictionary, end it on .txt" << endl;
     cin >> iFile;
@@ -256,8 +260,18 @@ int main()
     do
     {
         iWord = wordtext(iFile);
-    iScore += DisplayGame(iWord);
-        cout << "your score is: " << iScore << " points" << endl;
+        iScore = DisplayGame(iWord);
+        if (iScore > 0)
+        {
+            iWin++;
+        } else {
+            iLoose++;
+        }
+        dTimes++;
+        cout << "you have won: " << iWin << " times." << endl;
+        cout << "you have lost " << iLoose << " times." << endl;
+        dWinratio = iWin/dTimes;
+        cout << "your win ratio is: " << dWinratio << endl;
         cout << "do you want to continue? (Y/N)" << endl;
         cin >> sContinue;
     } while (sContinue != "N" && sContinue != "n" );
