@@ -126,6 +126,9 @@ int DisplayGame(string iWord)
     int iLives = 6;
     int iLenght;
     int iHits = 0;
+    int iCounter = 0;
+    bool bTest = false;
+    string iArrCounter[iMax];
     string iTry;
     string iArrWord[iMax];
     iLenght = iWord.length();
@@ -149,7 +152,9 @@ int DisplayGame(string iWord)
 
     while (iLives > 0 && iHits < iLenght && iHits != -1)// or ihits = ilenght
     {
+        bTest = false;
         bNeg = false;
+        cout << endl;
         cout << "Lives: " << iLives << endl;
         Drawings(iLives);
         for(int iX = 0; iX < iLenght; iX++)
@@ -159,7 +164,24 @@ int DisplayGame(string iWord)
         cout << endl;
         cout << "give me a letter" << endl;
         cin >> iTry;
-        //cout << endl;
+        cout << endl;
+        cout << endl;
+        iArrCounter[iCounter] = iTry;
+        for (int iH = 0; iH < iCounter; iH++)
+        {
+            if (iTry == iArrCounter[iH])
+            {
+                bTest = true;
+            }
+        }
+        iCounter++;
+        cout << "letters used: ";
+        for (int iG = 0; iG<iCounter; iG++)
+        {
+            cout << iArrCounter[iG] << " ";
+        }
+        if (bTest == false)
+        {
         if (iTry == iWord)
         {
             iHits = -1;
@@ -176,14 +198,14 @@ int DisplayGame(string iWord)
                 }
 
             }
-            cout << endl;
+
             if (bNeg == false)
             {
                 iLives--;
             }
 
 
-            cout << endl;
+
         } else if (iHits == -1)
         {
             for (int iZ = 0; iZ < iLenght; iZ++)
@@ -193,6 +215,11 @@ int DisplayGame(string iWord)
             cout << endl;
             cout << "congratulations you got " << iWord << " right" << endl;
         }
+    } else
+    {
+        cout << endl;
+        cout << "please enter a letter that you have not used" << endl;
+    }
     }
 cout << "the word was: " << iWord << endl;
 
